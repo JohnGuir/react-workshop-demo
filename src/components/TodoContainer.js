@@ -3,9 +3,7 @@ import React from "react";
 
 const TodoContainer = (props) => {
   // TODO: Access Props
-
-  let name = "PLACE HOLDER NAME";
-  let addTodo = () => {};
+  const { name, addTodo } = props;
 
   return (
     <div className="todo-container">

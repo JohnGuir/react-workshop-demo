@@ -10,7 +10,7 @@ function App() {
       key: 0,
       completed: false,
       title: "Do the laundry",
-    },
+    }
   ]);
 
   // functions to delete, complete, and add todo items.
@@ -32,16 +32,30 @@ function App() {
   const addTodo = (title) => {
     const key = Date.now();
     // TODO: Implement addTodo
+    setTodoItems((prev) => [...prev, { key, completed: false, title }])
+    console.log("Adding todo", title, key)
   };
 
   // The main app component
   return (
     <div className="App">
       <header className="header">
-        <h1>Todo List</h1>
+        <h1>My To-Do List</h1>
       </header>
       <div className="body-container">
-        {/*TODO: Implement TodoContainer and TodoItem*/}
+        <TodoContainer name="My Daily Tasks" addTodo={addTodo}>
+          {
+            todoItems.map((item) => (
+              <TodoItem
+                key={item.key}
+                title={item.title}
+                completed={item.completed}
+                onDelete={() => deleteTodo(item.key)}
+                onComplete={() => completeTodo(item.key)}
+              />
+            ))
+          } 
+        </TodoContainer>
       </div>
     </div>
   );
